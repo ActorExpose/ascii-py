@@ -8,7 +8,7 @@ import argparse
 import json
 import random
 
-from ascii_image import image_resize, image_to_ascii_grayscale
+from ascii_image import image_resize, image_to_ascii_greyscale
 
 chars = ['.', ',', ':', ';', '+', '*', '?', '%', 'S', '#', '@']  # TODO: Change char list
 
@@ -31,7 +31,7 @@ def get_video_data(cap, resolution):
             pil_frame = cv_to_pillow(frame)
             resized = image_resize(pil_frame, width=resolution)
             width, height = resized.size
-            ascii_image = image_to_ascii_grayscale(resized, resolution, chars)
+            ascii_image = image_to_ascii_greyscale(resized, resolution, chars)
             frame_list.append('\n'.join(ascii_image))
         else:
             os.system('cls' if os.name == 'nt' else 'clear')
@@ -55,7 +55,7 @@ def display_realtime(cap, fps, resolution):
             pil_frame = cv_to_pillow(frame)
             resized = image_resize(pil_frame, width=resolution)
             width, height = resized.size
-            ascii_image = image_to_ascii_grayscale(resized, resolution, chars)
+            ascii_image = image_to_ascii_greyscale(resized, resolution, chars)
             # Only resizing the terminal on the first iteration of the loop
             frame_pos = int(cap.get(cv2.CAP_PROP_POS_FRAMES))
             if frame_pos <= 2:
